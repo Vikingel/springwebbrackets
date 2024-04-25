@@ -24,6 +24,7 @@ public class CatsController {
                         try {
                 list = getCatsService.readCats(file);
                 model.addAttribute("list_of_cats", list);
+                model.addAttribute("check", list);
                          }
             catch (FileNotFoundException e) {
                 model.addAttribute("errorMsg", "такого файла нет");
