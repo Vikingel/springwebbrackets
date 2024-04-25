@@ -20,7 +20,7 @@ public class CatsController {
     public String showCatalog(@RequestParam(name = "file", required = false) String file,
                                Model model)  {
           if (file!=null && !file.isEmpty()) {
-            ArrayList<Cat> list = null;
+            ArrayList<String> list = null;
                         try {
                 list = getCatsService.readCats(file);
                 model.addAttribute("list_of_cats", list);

@@ -10,9 +10,9 @@
 <p><input placeholder="введите имя файла" name="file"></p>
 </form>
 
-<div th:each="cats : ${list_of_cats}">
+<div th:each="brs : ${list_of_cats}">
         <p>
-            ID:<span th:text="${cats.id}"/>; Кличка: <span th:text="${cats.name}"/> окрас: <span th:text="${cats.color}"/> возраст: <span th:text="${cats.age}"/>
+            Строка:<span th:text="${brs}"/>
                 </p>
             </div>
 <p> <span th:text="${errorMsg}" /></p>
