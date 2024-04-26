@@ -2,21 +2,24 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>каталог котов</title>
+    <title>Баланс скобок</title>
 </head>
 <body>
 <form>
-<p><button formaction="/catalog">загрузить котов из файла</button></p>
-<p><input placeholder="введите имя файла" name="file"></p>
+    <p>
+        <button formaction="/catalog">загрузить строки скобок из файла</button>
+    </p>
+    <p><input placeholder="введите имя файла" name="file"></p>
+    <p>(brackets1.txt или brackets2.txt)</p>
 </form>
-
+<p><span th:text="${caption1}"/></p>
 <div th:each="brs : ${list_of_cats}">
-        <p>
-            Строка:<span th:text="${brs}"/>
-                </p>
-            </div>
-<p>Check brackets</p>
-<p> <span th:text="${check}" /></p>
-<p> <span th:text="${errorMsg}" /></p>
+    <p>
+        <span th:text="${brs}"/>
+    </p>
+</div>
+<p><span th:text="${caption2}"/></p>
+<p><span th:text="${check}"/></p>
+<p><span th:text="${errorMsg}"/></p>
 </body>
 </html>

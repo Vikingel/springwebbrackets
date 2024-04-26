@@ -18,18 +18,22 @@ public class CatsController {
 
     @GetMapping("/catalog")
     public String showCatalog(@RequestParam(name = "file", required = false) String file,
-                               Model model)  {
-          if (file!=null && !file.isEmpty()) {
+                              Model model) throws FileNotFoundException {
+        String s1 = "В списке файла след строки:";
+        String s2 = "Проверка строк:";
+        if (file != null && !file.isEmpty()) {
             ArrayList<String> list = null;
-                        try {
+            try {
                 list = getCatsService.readCats(file);
+                ArrayList<String> listOfChecks = getCatsService.checkBrackets(list);
+                model.addAttribute("caption1", s1);
                 model.addAttribute("list_of_cats", list);
-                model.addAttribute("check", list);
-                         }
-            catch (FileNotFoundException e) {
+                model.addAttribute("caption2", s2);
+                model.addAttribute("check", listOfChecks);
+            } catch (FileNotFoundException e) {
                 model.addAttribute("errorMsg", "такого файла нет");
             }
-                    }
+        }
         return "catalog";
     }
 

@@ -12,23 +12,36 @@ import java.util.Deque;
 import java.util.Scanner;
 
 @Service    //аннотация, которая говорит Спрингу, что этот класс является "сервисом" - частным случаем "компонента"
-            //благодаря этому аннотация @ComponentScan на уровне конфигурации приложения автоматически
-            //создает бин, помещает его в контекст и выполняет инициализацию
+//благодаря этому аннотация @ComponentScan на уровне конфигурации приложения автоматически
+//создает бин, помещает его в контекст и выполняет инициализацию
 public class GetCatsService {
-    ArrayList<String> brs= new ArrayList<>();
+    ArrayList<String> brs = new ArrayList<>();
+    //ArrayList<String> checks = new ArrayList<>();
 
 
     @PostConstruct  //аннотация, которая говорит Спрингу, что данный метод нужно вызвать для иницализации
     //после создания бина
-    public void fill(){
+    public void fill() {
         try {
             brs.add("{][");
             brs.add("{{[]}}");
             brs.add("{][");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("что-то не так с созданием продуктов");
         }
+    }
+
+    public static ArrayList<String> checkBrackets(ArrayList<String> brs) throws FileNotFoundException {
+        //brs = new ArrayList<>();
+        ArrayList<String> checks = new ArrayList<>();
+        String result=null;
+        for (String str : brs) {
+            if (areBracketsBalanced(str) == true) {result = "Balanced";
+            } else result = "Not balanced";
+            checks.add(str+ " - "+ result);
+        }
+        return checks;
     }
 
     public static boolean areBracketsBalanced(String expr) {
@@ -64,7 +77,6 @@ public class GetCatsService {
         }
         return (stack.isEmpty());
     }
-}
 
 
     public ArrayList<String> getAllList() {
@@ -75,7 +87,7 @@ public class GetCatsService {
         Scanner scanner = new Scanner(new File(file));
         ArrayList<String> brs = new ArrayList<>();
         while (scanner.hasNext()) {
-            String str= scanner.next();
+            String str = scanner.next();
             brs.add(str);
         }
         return brs;
