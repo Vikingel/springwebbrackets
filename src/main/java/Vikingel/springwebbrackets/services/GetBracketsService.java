@@ -1,6 +1,5 @@
 package Vikingel.springwebbrackets.services;
 
-import Vikingel.springwebbrackets.entities.Cat;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +10,12 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Scanner;
 
-@Service    //аннотация, которая говорит Спрингу, что этот класс является "сервисом" - частным случаем "компонента"
-//благодаря этому аннотация @ComponentScan на уровне конфигурации приложения автоматически
-//создает бин, помещает его в контекст и выполняет инициализацию
-public class GetCatsService {
+@Service
+public class GetBracketsService {
     ArrayList<String> brs = new ArrayList<>();
-    //ArrayList<String> checks = new ArrayList<>();
 
 
-    @PostConstruct  //аннотация, которая говорит Спрингу, что данный метод нужно вызвать для иницализации
-    //после создания бина
+    @PostConstruct
     public void fill() {
         try {
             brs.add("{][");
@@ -28,13 +23,12 @@ public class GetCatsService {
             brs.add("{][");
 
         } catch (Exception e) {
-            System.out.println("что-то не так с созданием продуктов");
+            System.out.println("что-то не так с созданием ");
         }
     }
 
     public static ArrayList<String> checkBrackets(ArrayList<String> brs) throws FileNotFoundException {
-        //brs = new ArrayList<>();
-        ArrayList<String> checks = new ArrayList<>();
+                ArrayList<String> checks = new ArrayList<>();
         String result=null;
         for (String str : brs) {
             if (areBracketsBalanced(str) == true) {result = "Balanced";

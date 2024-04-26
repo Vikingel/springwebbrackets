@@ -1,7 +1,6 @@
 package Vikingel.springwebbrackets.controllers;
 
-import Vikingel.springwebbrackets.entities.Cat;
-import Vikingel.springwebbrackets.services.GetCatsService;
+import Vikingel.springwebbrackets.services.GetBracketsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +11,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 @Controller
-public class CatsController {
+public class BracketsController {
     @Autowired
-    GetCatsService getCatsService;
+    GetBracketsService getBracketsService;
 
     @GetMapping("/catalog")
     public String showCatalog(@RequestParam(name = "file", required = false) String file,
@@ -24,10 +23,10 @@ public class CatsController {
         if (file != null && !file.isEmpty()) {
             ArrayList<String> list = null;
             try {
-                list = getCatsService.readCats(file);
-                ArrayList<String> listOfChecks = getCatsService.checkBrackets(list);
+                list = getBracketsService.readCats(file);
+                ArrayList<String> listOfChecks = getBracketsService.checkBrackets(list);
                 model.addAttribute("caption1", s1);
-                model.addAttribute("list_of_cats", list);
+                model.addAttribute("list_of_brackets", list);
                 model.addAttribute("caption2", s2);
                 model.addAttribute("check", listOfChecks);
             } catch (FileNotFoundException e) {
