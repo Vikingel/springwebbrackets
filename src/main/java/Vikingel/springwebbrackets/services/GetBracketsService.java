@@ -1,3 +1,4 @@
+
 package Vikingel.springwebbrackets.services;
 
 import jakarta.annotation.PostConstruct;
@@ -28,7 +29,7 @@ public class GetBracketsService {
     }
 
     public static ArrayList<String> checkBrackets(ArrayList<String> brs) throws FileNotFoundException {
-                ArrayList<String> checks = new ArrayList<>();
+        ArrayList<String> checks = new ArrayList<>();
         String result=null;
         for (String str : brs) {
             if (areBracketsBalanced(str) == true) {result = "Balanced";
@@ -77,7 +78,7 @@ public class GetBracketsService {
         return brs;
     }
 
-    public static ArrayList<String> readCats(String file) throws FileNotFoundException {
+    public static ArrayList<String> readBrackets(String file) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(file));
         ArrayList<String> brs = new ArrayList<>();
         while (scanner.hasNext()) {

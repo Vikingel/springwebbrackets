@@ -23,7 +23,7 @@ public class BracketsController {
         if (file != null && !file.isEmpty()) {
             ArrayList<String> list = null;
             try {
-                list = getBracketsService.readCats(file);
+                list = getBracketsService.readBrackets(file);
                 ArrayList<String> listOfChecks = getBracketsService.checkBrackets(list);
                 model.addAttribute("caption1", s1);
                 model.addAttribute("list_of_brackets", list);
@@ -35,5 +35,4 @@ public class BracketsController {
         }
         return "catalog";
     }
-
 }
